@@ -4,7 +4,7 @@ import com.sqli.challenge.entities.Cart;
 import com.sqli.challenge.entities.Errors;
 import com.sqli.challenge.presenters.DefaultPresenter;
 import com.sqli.challenge.presenters.Presenter;
-import com.sqli.challenge.validators.DefaultValidator;
+import com.sqli.challenge.validators.EcommerceFacadeValidator;
 import com.sqli.challenge.validators.Validator;
 
 public class EcommerceFacade {
@@ -12,7 +12,7 @@ public class EcommerceFacade {
     private Cart cart = new Cart();
     private Errors errors = new Errors();
     private String voucher = "";
-    private Validator validator = new DefaultValidator();
+    private Validator ecommerceFacadeValidator = new EcommerceFacadeValidator();
     private Presenter presenter = new DefaultPresenter();
 
     public void addMachine(String name, int quantity, int price) {
@@ -40,7 +40,7 @@ public class EcommerceFacade {
     }
 
     public EcommerceFacade order() {
-        errors = validator.validateCart(cart, voucher);
+        ecommerceFacadeValidator.validate(this);
         return this;
     }
 
@@ -54,5 +54,17 @@ public class EcommerceFacade {
 
     public void voucher(String voucher) {
         this.voucher = voucher;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public Errors getErrors() {
+        return errors;
+    }
+
+    public String getVoucher() {
+        return voucher;
     }
 }

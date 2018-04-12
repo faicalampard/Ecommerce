@@ -5,14 +5,14 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
-public class Cart extends TreeMap<String , OrderLine> {
+public class Cart extends TreeMap<String, OrderLine> {
 
     private ProductFactory productFactory = new ProductFactory();
 
     public void addOrderLine(String type, String name, int quantity, double price) {
 
         Product product = productFactory.getProduct(type, name, price);
-        OrderLine orderLine = new OrderLine(product , quantity);
+        OrderLine orderLine = new OrderLine(product, quantity);
         this.merge(product.getName(),
                 orderLine,
                 (oldOrderLine, newOrderLine) -> {
@@ -26,11 +26,11 @@ public class Cart extends TreeMap<String , OrderLine> {
         orderLine.deductQuantity(quantity);
     }
 
-    public double getTotalPrice() {
+    public double calculateTotal() {
         return this.values().stream().mapToDouble(OrderLine::getPrice).sum();
     }
 
-    public Map<String, List<OrderLine>> groupByTypeOfOrderLine () {
+    public Map<String, List<OrderLine>> groupByTypeOfOrderLine() {
         return this.entrySet().stream().map(Map.Entry::getValue)
                 .collect(groupingBy(OrderLine::getProductType, TreeMap::new, Collectors.toList()));
     }

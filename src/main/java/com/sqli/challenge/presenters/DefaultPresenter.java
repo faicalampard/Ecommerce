@@ -21,7 +21,7 @@ public class DefaultPresenter implements Presenter {
                 out.append(String.format("\tName: %s\tQuantity: %d\tPrice: %.0f\n",
                         orderLine.getProduct().getName(),
                         orderLine.getQuantity(),
-                        orderLine.getPrice()) );
+                        orderLine.getPrice()));
             }
         }
         return out.toString();
@@ -47,7 +47,7 @@ public class DefaultPresenter implements Presenter {
 
             out.append(String.format("\tQuantity: %d\tPrice: %.0f\n", quantitySum, priceSum));
         }
-        out.append(String.format("Total Price: %.0f\n", cart.getTotalPrice()));
+        out.append(String.format("Total Price: %.0f\n", cart.calculateTotal()));
         return out.toString();
     }
 }

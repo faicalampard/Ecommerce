@@ -27,7 +27,7 @@ public class EcomTest {
     }
 
     @Test
-        public void testRomoveMachine() {
+    public void testRomoveMachine() {
         EcommerceFacade ecommerceFacade = new EcommerceFacade();
         ecommerceFacade.addMachine("PRODIGIO", 1, 150);
         ecommerceFacade.addMachine("PIXIE", 1, 350);
