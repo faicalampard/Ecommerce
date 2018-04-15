@@ -27,7 +27,7 @@ public class OrderLine {
     }
 
     public boolean isInValid() {
-        return product.getType().equals("Capsule") && quantity % 5 != 0;
+        return product.getType().equals("Capsule") & quantity % 5 != 0;
     }
 
 
